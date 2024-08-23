@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+</head>
+<body>
+
+<div class="ui container">
+
+{% if messages %}
+
+    {% for message in messages %}
+
+    {% if message.tags == 'success' %}
+    <div class="ui message {% if message.tags %}{{ message.tags }}{% endif %}">
+        <i class="close icon"></i>
+        <div class="header">
+            Success!
+        </div>
+        <ul class="list">
+            <!-- Access the message content here -->
+            <li>{{ message }}</li>
+        </ul>
+    </div>
+    {% endif %}
+
+    {% endfor %}
+    
+{% endif %}
+
+    <h1>Country Form</h1>
+    <form method="post" class="ui form">
+        {% csrf_token %}
+        <div class="field">
+            {{ form.name.label_tag }}
+            {{ form.name }}
+            {% if form.name.errors %}
+            <div class="ui pointing red basic label">{{ form.name.errors.0 }}</div>
+            {% endif %}
+        </div>
+        <button type="submit" class="ui button primary">Submit</button>
+    </form>
+</div>
+
+
+</body>
+</html>
+
+<script>
+
+    // Function to close Semantic UI message when "x" icon is clicked
+    $('.message .close.icon').on('click', function () {
+        $(this).closest('.message').transition('fade');
+    });
+
+</script>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+</head>
+<body>
+
+<!-- Your dropdown container -->
+<div class="ui selection dropdown" id="countryDropDown">
+    <input type="hidden" name="country">
+    <i class="dropdown icon"></i>
+    <div class="default text">Select Country</div>
+    <div class="menu"></div>
+</div>
+
+
+</body>
+</html>
+
+<script>
+
+    $(document).ready(function () {
+
+        // Make an AJAX request to fetch data from the remote API
+        $.ajax({
+            
+            // Replace with the actual API endpoint
+            url: 'http://127.0.0.1:8000/api/countries/',
+            
+            method: 'GET',
+            
+            success: function (data) {
+            
+                // Initialize the Semantic UI dropdown
+                $('#countryDropDown')
+                    .dropdown({
+                        onChange: function (value, text) {
+            
+                            // Handle dropdown selection here
+                            console.log('Selected Value:', value);
+                            console.log('Selected Text:', text);
+                            
+                        }                        
+                    });
+
+                // Populate the dropdown with remote data
+                const $menu = $('#countryDropDown .menu');
+
+                data.forEach(function (item) {
+                    $menu.append(`<div class="item" data-value="${item.id}">${item.name}</div>`);
+                });
+            },
+            error: function (error) {
+                console.error('Error fetching data:', error);
+            }
+        });
+    });
+
+</script>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+
+</head>
+<body>
+
+<div class="ui center aligned container">
+
+    <table class="ui celled table">
+
+        <thead>
+
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Job</th>
+            </tr>
+        
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td data-label="Name">James</td>
+                <td data-label="Age">24</td>
+                <td data-label="Job">Engineer</td>
+            </tr>
+
+            <tr>
+                <td data-label="Name">Jill</td>
+                <td data-label="Age">26</td>
+                <td data-label="Job">Engineer</td>
+            </tr>
+
+            <tr>
+                <td data-label="Name">Elyse</td>
+                <td data-label="Age">24</td>
+                <td data-label="Job">Designer</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>

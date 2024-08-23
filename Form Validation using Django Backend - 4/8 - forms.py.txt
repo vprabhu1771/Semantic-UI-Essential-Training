@@ -1,0 +1,23 @@
+from django import forms
+from .models import Country
+
+class CountryForm(forms.ModelForm):
+    # Set 'required' attribute to False for the 'name' field
+    name = forms.CharField(max_length=255, required=False)
+
+    class Meta:
+        model = Country
+        fields = ['name']
+
+    def clean_name(self):
+        name = self.cleaned_data.get('name')
+        if not name:
+            raise forms.ValidationError("Please enter a name for the country.")
+        return name
+
+    def save(self, commit=True):
+        name = self.cleaned_data['name']
+        country = Country(name=name)
+        if commit:
+            country.save()
+        return country

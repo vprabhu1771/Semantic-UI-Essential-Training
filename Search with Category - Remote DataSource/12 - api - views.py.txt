@@ -1,0 +1,37 @@
+from rest_framework import generics
+from backend.models import Country, State, City
+from .serializers import CountrySerializer, StateSerializer, CitySerializer
+
+class CountryListCreateView(generics.ListCreateAPIView):
+    serializer_class = CountrySerializer
+
+    def get_queryset(self):
+        queryset = Country.objects.all()
+
+        # Check if a query parameter named 'query' is present in the request
+        query_param = self.request.query_params.get('query', None)
+        if query_param is not None:
+            # Filter the queryset based on the 'query' parameter
+            queryset = queryset.filter(name__icontains=query_param)
+
+        return queryset
+
+class CountryDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Country.objects.all()
+    serializer_class = CountrySerializer
+
+class StateListCreateView(generics.ListCreateAPIView):
+    queryset = State.objects.all()
+    serializer_class = StateSerializer
+
+class StateDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = State.objects.all()
+    serializer_class = StateSerializer
+
+class CityListCreateView(generics.ListCreateAPIView):
+    queryset = City.objects.all()
+    serializer_class = CitySerializer
+
+class CityDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = City.objects.all()
+    serializer_class = CitySerializer

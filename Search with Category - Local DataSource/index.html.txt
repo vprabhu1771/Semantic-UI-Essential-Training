@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+
+</head>
+<body>
+
+<div class="ui search">
+    <div class="ui icon input">
+        <input class="prompt" type="text" placeholder="Search countries...">
+        <i class="search icon"></i>
+    </div>
+    <div class="results"></div>
+</div>
+
+<!-- Display selected item -->
+<p id="selectedItem"></p>
+
+</body>
+</html>
+
+<script>
+
+$(document).ready(function () {
+
+  var categoryContent = [
+    { category: 'South America', title: 'Brazil' },
+    { category: 'South America', title: 'Peru' },
+    { category: 'North America', title: 'Canada' },
+    { category: 'North America', title: 'USA' },
+    { category: 'Asia', title: 'India' },
+    { category: 'Asia', title: 'South Korea' },
+    { category: 'Asia', title: 'Japan' },
+    { category: 'Asia', title: 'China' },
+    { category: 'Europe', title: 'Denmark' },
+    { category: 'Europe', title: 'England' },
+    { category: 'Europe', title: 'France' },
+    { category: 'Europe', title: 'Germany' },
+    { category: 'Europe', title: 'United Kingdom' },
+    { category: 'Africa', title: 'Ethiopia' },
+    { category: 'Africa', title: 'Nigeria' },
+    { category: 'Africa', title: 'Zimbabwe' },
+  ];
+
+  $('.ui.search')
+    .search({
+      type: 'category',
+
+      source: categoryContent,
+
+      onSelect: function(result, response) {
+
+        // result contains the selected item
+        $('#selectedItem').text("Selected Item: " + result.title);
+
+        console.log("Selected Item: " + result.title);
+
+      }
+    });
+
+});
+
+</script>

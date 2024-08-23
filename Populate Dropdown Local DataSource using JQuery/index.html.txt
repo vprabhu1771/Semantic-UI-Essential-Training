@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+</head>
+<body>
+
+<!-- Your dropdown container -->
+<div class="ui selection dropdown" id="genderDropDown">
+    <input type="hidden" name="gender">
+    <i class="dropdown icon"></i>
+    <div class="default text">Select Gender</div>
+    <div class="menu"></div>
+</div>
+
+</body>
+</html>
+
+<script>
+
+    $(document).ready(function () {
+    
+        // Simulated local response data for gender selection
+        const localData = [
+            {
+                "id": "male",
+                "name": "Male"
+            },
+            {
+                "id": "female",
+                "name": "Female"
+            },
+            {
+                "id": "other",
+                "name": "Other"
+            }
+        ];
+
+        // Initialize the Semantic UI dropdown
+        $('#genderDropDown')
+            .dropdown({
+                onChange: function (value, text) {
+                    // Handle dropdown selection here
+                    console.log('Selected Value:', value);
+                    console.log('Selected Text:', text);
+                }
+            });
+
+        // Populate the dropdown with local data
+        const $menu = $('#genderDropDown .menu'); // Use the correct selector here
+
+        localData.forEach(function (item) {
+            $menu.append(`<div class="item" data-value="${item.id}">${item.name}</div>`);
+        });
+
+    });
+
+</script>

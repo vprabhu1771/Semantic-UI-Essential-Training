@@ -1,0 +1,8 @@
+from django import forms
+
+from backend.models import Country
+
+class CountryForm(forms.ModelForm):
+    class Meta:
+        model = Country
+        fields = ['id', 'name']

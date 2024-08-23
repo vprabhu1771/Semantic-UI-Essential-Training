@@ -1,0 +1,23 @@
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .forms import CountryForm
+
+def index(request):
+    if request.method == 'POST':
+        form = CountryForm(request.POST)
+
+        if form.is_valid():
+            # Save the form data to the database
+            form.save()
+
+            messages.success(request, 'Form submitted successfully!')
+
+            # return redirect('success')
+            return redirect('/')
+    else:
+        form = CountryForm(None)
+
+    context = {
+        'form': form
+    }
+    return render(request, 'backend/index.html', context)

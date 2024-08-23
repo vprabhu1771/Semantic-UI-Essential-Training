@@ -1,0 +1,5 @@
+A search can look for results inside a static local source.
+
+By default, results will return content first that begin with the query text, 
+but also afterward content that matches the query anywhere inside.
+To disable full text search you can specify in settings fullTextSearch: false. 
